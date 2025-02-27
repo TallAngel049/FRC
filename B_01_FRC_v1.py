@@ -10,9 +10,7 @@ def make_statement(statement, decoration):
     """Emphasises headings by adding
     decoration at the start and end"""
 
-    print(f"{decoration * 3} {statement} {decoration * 3}")
-
-    return ()
+    return f"{decoration * 3} {statement} {decoration * 3}"
 
 
 def yes_no(question):
@@ -34,7 +32,26 @@ def instructions():
 
     print('''
 
-instruction go here
+This program will ask you for...
+ - The name of the product you are selling
+ - How many items you plan on selling
+ - The cost for each component of the product
+    (variable cost)
+ - Whether or not you have fixed expenses (if you have
+    fixed expenses, it will ask you what they are)
+ - How much money you want to gain (profit goal)
+
+It will also ask you how much the recommended sales price should be
+rounded to.
+
+The program outputs an itemised list of the variable and 
+fixed expenses (which includes subtotal for theses expenses)
+
+Finally it will tell you how much you would sell for each item 
+to reach your goal.
+
+The data will also be written to a text file which has the
+same name as your product and also the date.
 
     ''')
 
@@ -161,7 +178,7 @@ def get_expenses(exp_type, how_many=1):
                                   tablefmt='psql', showindex=False)
 
     # return all items for now so we can check loop.
-    return expense_frame, subtotal
+    return expense_string, subtotal
 
 
 def currency(x):
@@ -252,7 +269,7 @@ to_write = [main_heading_string, quantity_string,
             "\n", fixed_heading_string, fixed_panda_string,
             "\n", fixed_subtotal_string, total_expenses_string
 
-]
+            ]
 
 # print area
 print()
@@ -269,4 +286,3 @@ text_file = open(write_to, "w+")
 for item in to_write:
     text_file.write(item)
     text_file.write("\n")
-
